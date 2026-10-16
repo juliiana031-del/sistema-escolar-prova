@@ -93,6 +93,7 @@ A view é um arquivo que contém uma função ou classe Python responsável por 
 Ela recebe uma solicitação -> consulta infos/prepara uma página html -> devolve uma resposta
 
 # ERRO (05): 
+<<<<<<< HEAD
 O arquivo 'portal/views.py' não possui a view  'cadastro'. O arquivo 'urls.py' direciona para ela. Ao iniciar, o Django verifica as rotas do projeto. Quando encontra uma referência a uma função inexistente, ocorre um erro impedindo o carregamento correto das URLs e a inicialização do servidor.
 
 
@@ -117,6 +118,52 @@ Adicionamos a importação da função include do módulo django.urls para que p
 from django.urls import include, path.
 Sem prefixo, a rota do portal será acessada diretamente pela raiz do site, permitindo que os usuários acessem a página inicial do portal sem precisar digitar um caminho adicional.
 
+=======
+O arquivo 'views.py' não possui a views do cadastro. O arquivo 'urls.py' direciona para ela. 
+Ao iniciar, o Django verifica as rotas do projeto. Quando encontra uma referência a uma função inexistente, ocorre um erro, impedindo o carregamento correto das URLs e a inicialização do servidor.
+
+
+# CORREÇÃO (05): 
+def cadastro(request):
+    return render(request,'templates/portal/cadastro.html') 
+Criamos uma função chamada 'cadastro' que retorna para o usuário a página de cadastro.
+
+---------------------------------------------------------------------
+
+# --> Arquivo: sistema/urls.py (01 erro) 
+O sistema de URLs é o mapa de roteamento. Ele diz ao Django qual view deve ser chamada quando o usuário digitar uma determinada "url" no navegador.
+
+# ERRO (06): 
+Linha 04 - (from django.urls import path)
+O arquivo 'urls.py' não possui a importação da função 'include'. A função 'include' é necessária para que o sistema consiga redirecionar para a página de cadastro. 
+
+Linha 10 - path('cadastro'/, preciso mostrar a pagina cadastro.html)
+
+O arquivo 'urls.py' não possui a importação da função 'include'. A função 'include' é necessária para que o sistema consiga redirecionar para a página de cadastro.  
+Isso causa um erro ao tentar acessar a página inicial do portal. Pois não há uma rota definida para a página inicial do portal.    
+
+# CORREÇÃO (06): 
+from django.urls import include, path
+path('', include('portal.urls')),
+Adicionamos a importação da função 'include' para que o sistema consiga redirecionar para a página de cadastro.
+Sem prefixo, as urls do app ficam na raiz do site. Com prefixo, as urls do app ficam dentro de uma pasta com o nome do app.
+
+-------------------------------------------------------------------------------------------
+
+# --> Arquivo: portal/urls.py (01 erro) 
+
+# ERRO (07): 
+
+
+# CORREÇÃO (07): 
+
+
+
+
+
+
+
+>>>>>>> 785616806fcbf81d28d3a1b8482457554fbe3eea
 
  
 
