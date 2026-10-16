@@ -1,5 +1,7 @@
 # Descrição do projeto:
 
+NOME:JULIANA NICOLAO SILVA 
+
 Foi desenvolvido um Projeto de um Sistema Escolar para cadastro de informações de Professores, Alunos e Aulas.
 
 # O cadastro do Professor deve conter as seguintes informações: 
@@ -184,3 +186,6 @@ Falta de identificadores (name='index' e name='cadastro') nas rotas, impedindo o
 Adicionada a variável app_name = 'portal' para registrar o namespace do app.
 Alterado o caminho da view inicial para '' para responder diretamente à raiz.
 Incluídos os parâmetros name='index' e name='cadastro' nas funções path().
+
+
+
