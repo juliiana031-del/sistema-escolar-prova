@@ -93,24 +93,47 @@ A view é um arquivo que contém uma função ou classe Python responsável por 
 Ela recebe uma solicitação -> consulta infos/prepara uma página html -> devolve uma resposta
 
 # ERRO (05): 
-def index(request):
-    return render(
-        request,
-        'templates/portal/index.html'
-    )
+O arquivo 'portal/views.py' não possui a view  'cadastro'. O arquivo 'urls.py' direciona para ela. Ao iniciar, o Django verifica as rotas do projeto. Quando encontra uma referência a uma função inexistente, ocorre um erro impedindo o carregamento correto das URLs e a inicialização do servidor.
 
-O segundo argumento na função index está errado.
 
 # CORREÇÃO (05): 
-def index(request):
-    return render(request,'portal/index.html')
+Criamos uma função chamada cadastro que retorna para o usuario a pagina de cadastro.
+ 
+ 
+ --------------------------------------------------------------------
 
-Com o app devidamente registrado na lista de apps, o Django já procura e entra automaticamente dentro das pasta templates para procurar por um arquivo html. Por isso, não precisamos escrever essa pasta novamente no caminho da nossa request. 
+# --> Arquivo : urls.py/sistema (01 erro)
+O sistema de urls é o mapa de roteamento. Ele diz ao Django qual view deve ser chamada quando o usuário digitar uma determinada url no navegador.
+
+# ERRO(06): 
+Linha 04 - from django.urls import path 
+A função include não foi importada, o que causa um erro ao tentar incluir as urls do portal.
+Linha 10 - path('cadastro/', preiso mostrar a página cadastro.html)
+Isso causa um erro ao tentar acessar a página inicial do portal, pois não há uma rota definida para ela.
 
 
-# --> Arquivo : 
+# CORREÇÃO (06):
+Adicionamos a importação da função include do módulo django.urls para que possamos incluir as urls do portal no arquivo urls.py principal.
+from django.urls import include, path.
+Sem prefixo, a rota do portal será acessada diretamente pela raiz do site, permitindo que os usuários acessem a página inicial do portal sem precisar digitar um caminho adicional.
+
 
  
 
 
+--------------------------------------------------------------------
 
+# --> Arquivo : urls.py/portal (01 erro)
+
+
+
+# ERRO(07): 
+Ausência do namespace do aplicativo (app_name = 'portal').
+Rota principal configurada incorretamente com o caminho 'index/' em vez da raiz vazia ('').
+Falta de identificadores (name='index' e name='cadastro') nas rotas, impedindo o uso de referências nomeadas nos templates.
+
+
+# CORREÇÃO (07):
+Adicionada a variável app_name = 'portal' para registrar o namespace do app.
+Alterado o caminho da view inicial para '' para responder diretamente à raiz.
+Incluídos os parâmetros name='index' e name='cadastro' nas funções path().
