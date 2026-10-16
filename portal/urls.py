@@ -1,8 +1,10 @@
 from django.urls import path
 
-from portal import views
+from . import views
+
+app_name = 'portal'
 
 urlpatterns = [
-    path('index/', views.index),
-    path('cadastro/', views.cadastro),
+    path('', views.index, name='index'),
+    path('cadastro/', views.cadastro, name='cadastro'),
 ]

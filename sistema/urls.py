@@ -1,7 +1,7 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path #include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cadastro/', preciso mostrar a página cadastro.html),
+    path('', include('portal.urls')),
 ]
