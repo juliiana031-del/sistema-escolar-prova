@@ -17,6 +17,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+# ERRO ENCONTRADO: ausência do app "portal" na lista de apps instalados
+# CORREÇÃO: listagem do app "portal" na lista de apps instalados
+    'portal', 
 ]
 
 MIDDLEWARE = [
